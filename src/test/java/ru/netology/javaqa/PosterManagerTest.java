@@ -1,7 +1,11 @@
 package ru.netology.javaqa;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 
 public class PosterManagerTest {
     PosterData name1 = new PosterData("Бладшот");
@@ -12,24 +16,59 @@ public class PosterManagerTest {
     PosterData name6 = new PosterData("Тролли. Мировой тур");
     PosterData name7 = new PosterData("Номер один");
 
+    PosterManager manager = new PosterManager();
+
+    @BeforeEach
+    public void setup() {
+        manager.addNewMovie(name1);
+        manager.addNewMovie(name2);
+        manager.addNewMovie(name3);
+        manager.addNewMovie(name4);
+        manager.addNewMovie(name5);
+        manager.addNewMovie(name6);
+        manager.addNewMovie(name7);
+    }
 
     @Test
-    public void test() {
-        PosterManager repo = new PosterManager();
-        repo.addNewMovie(name1);
-        repo.addNewMovie(name2);
-        repo.addNewMovie(name3);
-        repo.addNewMovie(name4);
-        repo.addNewMovie(name5);
-        repo.addNewMovie(name6);
-        repo.addNewMovie(name7);
+    public void addNewMovie() {
 
         PosterData[] expected = {name1, name2, name3, name4, name5, name6, name7};
-        PosterData[] actual = repo.getMovieNames();
-
+        PosterData[] actual = manager.findAll();
 
         Assertions.assertArrayEquals(expected, actual);
+    }
 
+
+    @Test
+    public void shouldReverseMovieNames() {
+
+        PosterData[] expected = {name7, name6, name5, name4, name3};
+        PosterData[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({"10"})
+
+    public void shouldReverseMovieNames10(int resultLength) {
+
+        PosterData[] expected = {name7, name6, name5, name4, name3, name2, name1};
+        PosterData[] actual = manager.findLast(resultLength);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"3"})
+
+    public void shouldReverseMovieNames3(int resultLength) {
+
+        PosterData[] expected = {name7, name6, name5};
+        PosterData[] actual = manager.findLast(resultLength);
+
+        Assertions.assertArrayEquals(expected, actual);
     }
 
 }
