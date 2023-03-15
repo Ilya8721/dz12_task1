@@ -18,6 +18,7 @@ public class PosterManagerTest {
 
     PosterManager manager = new PosterManager();
 
+
     @BeforeEach
     public void setup() {
         manager.addNewMovie(name1);
@@ -28,6 +29,7 @@ public class PosterManagerTest {
         manager.addNewMovie(name6);
         manager.addNewMovie(name7);
     }
+
 
     @Test
     public void addNewMovie() {
@@ -59,6 +61,7 @@ public class PosterManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
 
     @ParameterizedTest
     @CsvSource({"3"})
