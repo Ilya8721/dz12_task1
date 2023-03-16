@@ -1,9 +1,9 @@
 package ru.netology.javaqa;
 
 public class PosterData {
-    private String movieName;
+    private String movieNames;
 
-    public PosterData(String movieName) {
-        this.movieName = movieName;
+    public PosterData(String movieNames) {
+        this.movieNames = movieNames;
     }
 }

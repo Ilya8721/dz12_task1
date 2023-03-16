@@ -54,10 +54,19 @@ public class PosterManagerTest {
     @ParameterizedTest
     @CsvSource({"10"})
 
-    public void shouldReverseMovieNames10(int resultLength) {
+    public void shouldReverseMovieNames10(int limit) {
+        PosterManager manager = new PosterManager(limit);
+
+        manager.addNewMovie(name1);
+        manager.addNewMovie(name2);
+        manager.addNewMovie(name3);
+        manager.addNewMovie(name4);
+        manager.addNewMovie(name5);
+        manager.addNewMovie(name6);
+        manager.addNewMovie(name7);
 
         PosterData[] expected = {name7, name6, name5, name4, name3, name2, name1};
-        PosterData[] actual = manager.findLast(resultLength);
+        PosterData[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -66,10 +75,19 @@ public class PosterManagerTest {
     @ParameterizedTest
     @CsvSource({"3"})
 
-    public void shouldReverseMovieNames3(int resultLength) {
+    public void shouldReverseMovieNames3(int limit) {
+        PosterManager manager = new PosterManager(limit);
+
+        manager.addNewMovie(name1);
+        manager.addNewMovie(name2);
+        manager.addNewMovie(name3);
+        manager.addNewMovie(name4);
+        manager.addNewMovie(name5);
+        manager.addNewMovie(name6);
+        manager.addNewMovie(name7);
 
         PosterData[] expected = {name7, name6, name5};
-        PosterData[] actual = manager.findLast(resultLength);
+        PosterData[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
     }

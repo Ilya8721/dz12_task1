@@ -2,6 +2,12 @@ package ru.netology.javaqa;
 
 public class PosterManager {
     private PosterData[] movieNames = new PosterData[0];
+    private int limit = 5;
+
+    public PosterManager() {}
+    public PosterManager(int limit) {
+        this.limit = limit;
+    }
 
 
     public void addNewMovie(PosterData name) {
@@ -20,26 +26,17 @@ public class PosterManager {
 
 
     public PosterData[] findLast() {
-        PosterData[] all = findAll();
-        int resultLength = 5;
-        PosterData[] reversed = new PosterData[resultLength];
-        for (int i = 0; i < resultLength; i++) {
-            reversed[i] = all[all.length - 1 - i];
-        }
-        return reversed;
-    }
 
-
-    public PosterData[] findLast(int resultLength) {
-        PosterData[] all = findAll();
-        if (resultLength > all.length) {
-            resultLength = all.length;
+        int resultLength;
+        if (limit > movieNames.length) {
+            resultLength = movieNames.length;
         } else {
-            resultLength = resultLength;
+            resultLength = limit;
         }
+
         PosterData[] reversed = new PosterData[resultLength];
-        for (int i = 0; i < resultLength; i++) {
-            reversed[i] = all[all.length - 1 - i];
+        for (int i = 0; i < reversed.length; i++) {
+            reversed[i] = movieNames[movieNames.length - 1 - i];
         }
         return reversed;
     }
